@@ -2,9 +2,6 @@ package banco
 
 import (
 	"database/sql"
-	"fmt"
-	_ "log"
-	"net/http"
 
 	_ "github.com/go-sql-driver/mysql" //drive sql
 )
@@ -25,20 +22,9 @@ func Con() (*sql.DB, error) {
 		return nil, err //vendo se tem algum erro
 	}
 
-	if err = db.Ping(); err != nil { //vendo se nao passou a string de conexao errada
+	if err := db.Ping(); err != nil { //vendo se nao passou a string de conexao errada
 		return nil, err
 	}
 
 	return db, nil
-
-}
-
-func Conectar() {
-
-	db, err := Con()
-	if err != nil {
-		fmt.Println("erro ao conectar com o banco"))
-	}
-
-	defer db.Close()
 }
